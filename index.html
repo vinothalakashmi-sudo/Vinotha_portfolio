@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vinotha R · EEE Portfolio</title>
+    <!-- Google Font: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <!-- Font Awesome for icons (contact & certs) -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: #f8fafc;
+        color: #1e293b;
+        line-height: 1.6;
+        scroll-behavior: smooth;
+        padding-top: 80px;
+      }
+
+      /* ---------- fixed navigation ---------- */
+      .navbar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background: white;
+        box-shadow: 0 4px 24px rgba(0, 0, 0, 0.02);
+        padding: 1.2rem 2rem;
+        z-index: 1000;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .nav-left {
+        font-size: 1.6rem;
+        font-weight: 600;
+        color: #1e40af;
+        letter-spacing: -0.02em;
+      }
+
+      .nav-menu {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+
+      .nav-menu a {
+        text-decoration: none;
+        color: #334155;
+        font-weight: 500;
+        transition: color 0.2s ease;
+        font-size: 1rem;
+      }
+
+      .nav-menu a:hover {
+        color: #1e40af;
+      }
+
+      @media (max-width: 700px) {
+        .nav-menu {
+          display: none;
+        }
+      }
+
+      /* ---------- container / sections ---------- */
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 3rem 2rem;
+      }
+
+      h2 {
+        font-size: 2.2rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.4rem;
+        letter-spacing: -0.02em;
+      }
+
+      .section-subhead {
+        color: #1e40af;
+        font-weight: 500;
+        text-transform: uppercase;
+        font-size: 0.9rem;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+      }
+
+      /* cards base + hover lift */
+      .card,
+      .skill-card,
+      .project-card,
+      .cert-card,
+      .contact-card {
+        background: white;
+        border-radius: 16px;
+        box-shadow: 0 8px 22px -10px rgba(0, 0, 0, 0.04),
+          0 4px 10px rgba(0, 0, 0, 0.02);
+        transition: transform 0.25s ease, box-shadow 0.25s ease,
+          border 0.2s ease;
+      }
+
+      .card:hover,
+      .skill-card:hover,
+      .project-card:hover,
+      .cert-card:hover,
+      .contact-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 30px -12px rgba(0, 0, 0, 0.08);
+      }
+
+      /* ---------- about ---------- */
+      .about-content {
+        background: white;
+        border-radius: 16px;
+        padding: 2rem 2.5rem;
+        max-width: 900px;
+        margin: 0 auto;
+        border: 1px solid #f0f4fa;
+      }
+
+      /* ---------- SKILLS GRID (logos only, no text) ---------- */
+      .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+        gap: 1.5rem;
+        margin-top: 1rem;
+      }
+
+      .skill-card {
+        padding: 1.5rem 0.5rem;
+        text-align: center;
+        border: 1px solid #eef2f6;
+        background: white;
+        border-radius: 16px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .skill-logo {
+        width: 70px;
+        height: 70px;
+        object-fit: contain;
+        display: block;
+      }
+
+      /* ---------- projects grid ---------- */
+      .projects-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 2rem;
+        margin-top: 1.5rem;
+      }
+
+      .project-card {
+        padding: 1.8rem;
+        border-radius: 20px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .project-title {
+        font-size: 1.4rem;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 0.25rem;
+      }
+
+      .project-meta {
+        font-size: 0.85rem;
+        color: #64748b;
+        margin-bottom: 0.75rem;
+        display: flex;
+        gap: 1.2rem;
+      }
+
+      .project-desc {
+        color: #334155;
+        margin: 0.8rem 0 1rem;
+        font-size: 0.95rem;
+        flex: 1;
+      }
+
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+        margin: 0.5rem 0 0.8rem;
+      }
+
+      .tech-tag {
+        background: #eef2ff;
+        color: #1e40af;
+        padding: 0.25rem 1rem;
+        border-radius: 40px;
+        font-size: 0.75rem;
+        font-weight: 500;
+      }
+
+      .skills-learned {
+        margin: 0.8rem 0 0.2rem;
+        font-size: 0.9rem;
+        color: #1e293b;
+        border-top: 1px dashed #e2e8f0;
+        padding-top: 0.8rem;
+      }
+
+      .skills-learned span {
+        font-weight: 600;
+        color: #1e40af;
+      }
+
+      .skills-learned ul {
+        list-style: disc;
+        margin-left: 1.2rem;
+        margin-top: 0.2rem;
+        color: #475569;
+        font-size: 0.85rem;
+      }
+
+      /* ---------- certifications grid ---------- */
+      .cert-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 1.2rem;
+        margin-top: 1.5rem;
+      }
+
+      .cert-card {
+        padding: 1.2rem 1rem;
+        border-radius: 16px;
+        background: white;
+        border: 1px solid #ecf1f7;
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .cert-card i {
+        color: #1e40af;
+        font-size: 1.2rem;
+        min-width: 1.6rem;
+      }
+
+      /* ---------- contact grid (clickable cards) ---------- */
+      .contact-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin: 2rem 0 1rem;
+      }
+
+      .contact-card {
+        padding: 0;
+        border-radius: 20px;
+        background: white;
+        border: 1px solid #eef2f6;
+        transition: transform 0.25s ease, box-shadow 0.25s ease,
+          border 0.2s ease;
+        display: flex;
+      }
+
+      .contact-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 24px 30px -12px rgba(0, 0, 0, 0.08);
+        border: 1px solid #1e40af60;
+      }
+
+      .contact-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        padding: 2rem 1rem;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 20px;
+        transition: background 0.2s ease;
+      }
+
+      .contact-link:hover {
+        background: rgba(30, 64, 175, 0.02);
+      }
+
+      .contact-link i {
+        font-size: 2rem;
+        color: #1e40af;
+        margin-bottom: 0.6rem;
+      }
+
+      .contact-link h4 {
+        font-weight: 600;
+        margin-bottom: 0.2rem;
+        color: #0f172a;
+      }
+
+      .contact-link p {
+        color: #475569;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+
+      footer {
+        text-align: center;
+        padding: 2rem 0 1.5rem;
+        color: #64748b;
+        border-top: 1px solid #e2e8f0;
+        background: white;
+        margin-top: 2rem;
+      }
+
+      @media (max-width: 700px) {
+        .contact-grid {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+        }
+        .container {
+          padding: 2rem 1.5rem;
+        }
+        h2 {
+          font-size: 1.9rem;
+        }
+        .about-content {
+          padding: 1.8rem;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .skills-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+        .cert-grid {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- fixed navigation bar -->
+    <nav class="navbar">
+      <div class="nav-left">VINOTHA R</div>
+      <ul class="nav-menu">
+        <li><a href="#about">About</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#certifications">Certifications</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="container">
+      <p class="section-subhead">
+        Electrical & Electronics Engineering Student
+      </p>
+      <h2>About Me</h2>
+      <div class="about-content">
+        <p style="font-size: 1.15rem; margin-bottom: 1.2rem">
+          Final-year Electrical and Electronics Engineering student (2022–2026)
+          at <strong>Government College of Engineering, Salem</strong> with CGPA
+          of <strong>8/10</strong>.
+        </p>
+        <p>
+          Hands-on experience in Embedded Systems, Simulation and
+          Automation-based projects with strong foundation in hardware-software
+          integration, circuit analysis and system validation.
+        </p>
+        <p style="margin-top: 1rem">
+          Focused on applying engineering principles to develop reliable and
+          efficient real-world solutions.
+        </p>
+      </div>
+    </section>
+
+    <!-- TECHNICAL SKILLS (logos only, redesigned Embedded & Motor to match MATLAB style) -->
+    <section id="skills" class="container">
+      <p class="section-subhead">Core tools and technologies</p>
+      <h2>Technical Skills</h2>
+      <div class="skills-grid">
+        <!-- MATLAB / Simulink (user provided) -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 40'%3E%3Ctext x='5' y='20' font-family='Arial' font-weight='bold' fill='%231e40af' font-size='14'%3EMATLAB%3C/text%3E%3Ctext x='5' y='35' font-family='Arial' fill='%23334155' font-size='12'%3ESIMULINK%3C/text%3E%3C/svg%3E"
+            alt="MATLAB/Simulink"
+          />
+        </div>
+        <!-- Arduino -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/arduino.svg"
+            alt="Arduino"
+          />
+        </div>
+        <!-- C Programming -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/c.svg"
+            alt="C"
+          />
+        </div>
+        <!-- Python -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/python.svg"
+            alt="Python"
+          />
+        </div>
+        <!-- MS Excel -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/microsoftexcel.svg"
+            alt="Excel"
+          />
+        </div>
+        <!-- Embedded System (redesigned to match MATLAB/Simulink style) -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Ctext x='5' y='22' font-family='Arial' font-weight='bold' fill='%231e40af' font-size='14'%3EEMBEDDED%3C/text%3E%3Ctext x='5' y='38' font-family='Arial' fill='%23334155' font-size='12'%3ESYSTEM%3C/text%3E%3C/svg%3E"
+            alt="Embedded System"
+          />
+        </div>
+        <!-- ESP8266 Interfacing (espressif) -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="https://cdn.jsdelivr.net/gh/simple-icons/simple-icons/icons/espressif.svg"
+            alt="ESP8266"
+          />
+        </div>
+        <!-- Motor Control & PWM (redesigned to match MATLAB/Simulink style) -->
+        <div class="skill-card">
+          <img
+            class="skill-logo"
+            src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 40'%3E%3Ctext x='5' y='22' font-family='Arial' font-weight='bold' fill='%231e40af' font-size='14'%3EMOTOR%3C/text%3E%3Ctext x='5' y='38' font-family='Arial' fill='%23334155' font-size='12'%3ECONTROL%3C/text%3E%3C/svg%3E"
+            alt="Motor Control & PWM"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- PROJECTS SECTION (unchanged) -->
+    <section id="projects" class="container">
+      <p class="section-subhead">Engineering implementations and prototypes</p>
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <!-- 1. Fire detection -->
+        <div class="project-card">
+          <div class="project-title">
+            IoT Based Fire Detection & Prevention System
+          </div>
+          <div class="project-meta">
+            <span>📅 2025</span> <span>👥 3 members</span>
+          </div>
+          <p class="project-desc">
+            Designed and implemented an IoT-enabled fire detection and
+            suppression system using ESP8266, flame sensor, and relay-controlled
+            water pump. Integrated GPS module for real-time location tracking
+            and Telegram Bot for instant alerts. Optimized sensor calibration to
+            reduce false triggering and improve response time.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">ESP8266</span
+            ><span class="tech-tag">Flame sensor</span
+            ><span class="tech-tag">Relay</span><span class="tech-tag">GPS</span
+            ><span class="tech-tag">Telegram</span
+            ><span class="tech-tag">Embedded C</span>
+          </div>
+          <div class="skills-learned">
+            <span>⚙️ skills learned:</span>
+            <ul>
+              <li>Sensor interfacing</li>
+              <li>Real-time IoT communication</li>
+              <li>Relay-based control systems</li>
+              <li>Embedded system debugging</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 2. AI visual inspection -->
+        <div class="project-card">
+          <div class="project-title">
+            AI-Based Visual Inspection of Battery Packs
+          </div>
+          <div class="project-meta">
+            <span>📅 2025</span> <span>👥 4 members</span>
+          </div>
+          <p class="project-desc">
+            Developed a computer vision prototype to detect surface defects in
+            EV battery cells using Python and OpenCV. Applied Canny edge
+            detection and preprocessing techniques to enhance defect detection
+            accuracy. Classified samples as defective or non-defective using
+            dataset comparison.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">Python</span
+            ><span class="tech-tag">OpenCV</span
+            ><span class="tech-tag">Canny edge</span
+            ><span class="tech-tag">Computer Vision</span>
+          </div>
+          <div class="skills-learned">
+            <span>⚙️ skills learned:</span>
+            <ul>
+              <li>Image preprocessing</li>
+              <li>Edge detection algorithms</li>
+              <li>AI-based quality inspection</li>
+              <li>Data comparison techniques</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 3. AC filter dust detection -->
+        <div class="project-card">
+          <div class="project-title">AC Filter Dust Detection</div>
+          <div class="project-meta">
+            <span>📅 2024</span> <span>👥 3 members</span>
+          </div>
+          <p class="project-desc">
+            Created an IoT-enabled air quality monitoring system for real-time
+            dust detection in AC filters. Configured ESP8266 to transmit sensor
+            data via Wi-Fi to a web dashboard. Implemented dust classification
+            logic for predictive maintenance.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">ESP8266</span
+            ><span class="tech-tag">Dust sensor</span
+            ><span class="tech-tag">Wi-Fi</span
+            ><span class="tech-tag">Web dashboard</span>
+          </div>
+          <div class="skills-learned">
+            <span>⚙️ skills learned:</span>
+            <ul>
+              <li>IoT system architecture</li>
+              <li>Wi-Fi communication</li>
+              <li>Threshold calibration</li>
+              <li>Embedded monitoring systems</li>
+            </ul>
+          </div>
+        </div>
+        <!-- 4. automatic irrigation -->
+        <div class="project-card">
+          <div class="project-title">Automatic Irrigation System</div>
+          <div class="project-meta">
+            <span>📅 2023</span> <span>👥 2 members</span>
+          </div>
+          <p class="project-desc">
+            Designed a sensor-based automated irrigation system using Raspberry
+            Pi Pico and soil moisture sensor. Implemented relay-controlled pump
+            operation based on real-time soil moisture readings to optimize
+            water usage.
+          </p>
+          <div class="tech-tags">
+            <span class="tech-tag">Raspberry Pi Pico</span
+            ><span class="tech-tag">Soil moisture</span
+            ><span class="tech-tag">Relay module</span>
+          </div>
+          <div class="skills-learned">
+            <span>⚙️ skills learned:</span>
+            <ul>
+              <li>Sensor-based automation</li>
+              <li>Embedded control logic</li>
+              <li>Real-time monitoring</li>
+              <li>Agricultural IoT concepts</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CERTIFICATIONS & ACHIEVEMENTS -->
+    <section id="certifications" class="container">
+      <p class="section-subhead">recognitions & courses</p>
+      <h2>Certifications & Achievements</h2>
+      <div class="cert-grid">
+        <div class="cert-card">
+          <i class="fas fa-trophy"></i> First Prize – Zonal Level TANSAM EV
+          Hackathon (AI Battery Inspection)
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-certificate"></i> Internet of Things Masterclass –
+          Pantech Solutions
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-medal"></i> Second Prize – AC Filter Dust Detection
+          Project
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-graduation-cap"></i> Introduction to IoT (90%) –
+          NPTEL
+        </div>
+        <div class="cert-card">
+          <i class="fas fa-graduation-cap"></i> Diploma in Electronics – Chitti
+        </div>
+        <div class="cert-card">
+          <i class="fab fa-python"></i> Python Programming – Pantech Solutions
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTACT SECTION (clickable cards) -->
+    <section id="contact" class="container">
+      <p class="section-subhead">get in touch</p>
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <!-- Location static card -->
+        <div
+          class="contact-card"
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem 1rem;
+          "
+        >
+          <div style="text-align: center">
+            <i
+              class="fas fa-map-marker-alt"
+              style="font-size: 2rem; color: #1e40af; margin-bottom: 0.6rem"
+            ></i>
+            <h4 style="font-weight: 600; margin-bottom: 0.2rem">Location</h4>
+            <p style="color: #475569; margin: 0">Namakkal, India</p>
+          </div>
+        </div>
+        <!-- Email clickable -->
+        <div class="contact-card">
+          <a
+            href="mailto:vinothalakashmi@gmail.com?subject=Portfolio%20Inquiry"
+            class="contact-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fas fa-envelope"></i>
+            <h4>Email</h4>
+            <p>vinothalakashmi@gmail.com</p>
+          </a>
+        </div>
+        <!-- LinkedIn clickable -->
+        <div class="contact-card">
+          <a
+            href="https://www.linkedin.com/in/vinotha16"
+            class="contact-link"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <i class="fab fa-linkedin"></i>
+            <h4>LinkedIn</h4>
+            <p>linkedin.com/in/vinotha16</p>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>© 2026 VINOTHA R | Electrical & Electronics Engineer</footer>
+  </body>
+</html>
